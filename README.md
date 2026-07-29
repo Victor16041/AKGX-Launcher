@@ -1,16 +1,16 @@
 # AKGX Launcher
 
-AKGX Launcher é um aplicativo desenvolvido em Python por mim e meus amigos para o nosso TCC. O objetivo principal do projeto é criar uma ferramenta para pesquisa e gerenciamento de downloads utilizando o protocolo BitTorrent.
+AKGX Launcher é um aplicativo desenvolvido em Python por mim e meus amigos para o nosso TCC. O objetivo do projeto é criar uma ferramenta para pesquisa e gerenciamento de downloads utilizando o protocolo BitTorrent.
 
-A ideia do projeto surgiu da necessidade de centralizar a organização de bibliotecas de jogos e facilitar o gerenciamento dos downloads em uma única aplicação, evitando a necessidade de utilizar diversas ferramentas separadas.
+A ideia do projeto é facilitar a organização de bibliotecas de jogos, juntando em um único aplicativo a pesquisa de jogos, visualização de informações e gerenciamento dos downloads.
 
-O projeto possui um backend desenvolvido em FastAPI, responsável pelo gerenciamento dos downloads e comunicação com APIs externas, e uma interface gráfica desenvolvida em PyQt5 para pesquisa, visualização de informações e acompanhamento dos downloads.
+O projeto possui um backend desenvolvido em FastAPI, responsável pelo controle dos downloads e comunicação com serviços externos, e uma interface gráfica feita em PyQt5 para interação com o usuário.
 
 ---
 
 # Público-alvo
 
-Entusiastas de jogos e desenvolvedores interessados em criar ferramentas para gerenciamento de bibliotecas, organização de informações e gerenciamento de downloads utilizando o protocolo BitTorrent.
+Entusiastas de jogos e desenvolvedores interessados em ferramentas de organização de bibliotecas, gerenciamento de informações e downloads utilizando o protocolo BitTorrent.
 
 ---
 
@@ -20,74 +20,159 @@ Entusiastas de jogos e desenvolvedores interessados em criar ferramentas para ge
 - Busca automática de capas utilizando a SteamGridDB.
 - Início de downloads por links Magnet.
 - Acompanhamento do progresso, velocidade e quantidade de peers em tempo real.
-- Organização dos downloads em uma interface gráfica simples.
-- Gerenciamento de downloads ativos.
+- Organização dos downloads em uma interface simples.
 
 ---
 
 # Tecnologias utilizadas
 
-## Linguagem
-
 - Python
-
-## Frameworks e bibliotecas
-
 - FastAPI
 - PyQt5
 - libtorrent
 - Requests
-
-## APIs utilizadas
-
 - SteamGridDB API
-
-## Armazenamento de dados
-
-O projeto utiliza arquivos JSON para armazenar informações dos catálogos de downloads.
 
 ---
 
 # Arquitetura do sistema
 
-O sistema é dividido em duas partes principais:
-
-## Frontend
-
-Desenvolvido utilizando PyQt5.
-
-Responsável por:
-
-- Interface gráfica;
-- Pesquisa de jogos;
-- Exibição de capas;
-- Visualização do progresso dos downloads.
+O projeto é dividido em duas partes:
 
 ## Backend
 
-Desenvolvido utilizando FastAPI.
+O backend foi desenvolvido utilizando FastAPI e é responsável por:
 
-Responsável por:
+- Gerenciar os downloads.
+- Controlar o libtorrent.
+- Buscar informações dos jogos.
+- Enviar informações para a interface.
 
-- Gerenciamento dos downloads;
-- Comunicação com o libtorrent;
-- Busca de informações dos jogos;
-- Retorno dos dados para o frontend.
+## Interface
 
-Fluxo básico:
+A interface foi desenvolvida utilizando PyQt5 e é responsável por:
 
-Usuário  
-↓  
-Interface PyQt5  
-↓  
-Requisições HTTP  
-↓  
-Backend FastAPI  
-↓  
-libtorrent  
-↓  
-Gerenciamento dos downloads
+- Pesquisa de jogos.
+- Exibição das capas.
+- Mostrar informações dos downloads.
+- Acompanhar o progresso.
+
+Fluxo do sistema:
+
+```
+Usuário
+   |
+   v
+Interface PyQt5
+   |
+   v
+Backend FastAPI
+   |
+   v
+libtorrent
+   |
+   v
+Downloads
+```
 
 ---
 
-# Estrutura do projeto
+# Como usar
+
+## 1) Instale as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 2) Crie um arquivo `fonte1.json` seguindo este modelo:
+
+```json
+{
+    "name": "Nome da Fonte",
+    "downloads": [
+        {
+            "title": "Nome do Jogo",
+            "uris": [
+                "magnet:?xt=..."
+            ],
+            "uploadDate": "2026-06-17T01:10:56.000",
+            "fileSize": "47.8 GB"
+        }
+    ]
+}
+```
+
+Adicione quantos objetos forem necessários dentro de `downloads`, um para cada jogo do catálogo.
+
+## 3) Adicione sua chave da SteamGridDB no arquivo `backend.py`:
+
+```python
+API_KEY = "SUA_API_KEY"
+```
+
+## 4) Execute o backend:
+
+```bash
+uvicorn backend:app --reload
+```
+
+## 5) Execute a interface:
+
+```bash
+python main.py
+```
+
+---
+
+# Backend API
+
+Principais rotas:
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/buscar/{nome}` | Pesquisa jogos pelo nome |
+| GET | `/download/{id}` | Inicia um download |
+| GET | `/status/{id}` | Mostra o status do download |
+| GET | `/downloads` | Lista downloads ativos |
+| GET | `/cancelar/{id}` | Cancela um download |
+
+---
+
+# Telas do sistema
+
+## Tela de Pesquisa
+
+Responsável pela busca dos jogos disponíveis no catálogo.
+
+Possui:
+
+- Campo de pesquisa.
+- Exibição das capas.
+- Botão para iniciar download.
+
+## Tela de Downloads
+
+Responsável por mostrar os downloads em andamento.
+
+Possui:
+
+- Barra de progresso.
+- Velocidade de download.
+- Quantidade de peers.
+- Status do download.
+- Botão para abrir a pasta.
+
+---
+
+# Banco de dados
+
+O projeto não utiliza banco de dados.
+
+As informações dos jogos são armazenadas utilizando arquivos JSON, que funcionam como uma fonte de dados para o sistema.
+
+---
+
+# Aviso
+
+Este repositório contém apenas o código-fonte do projeto. Nenhum arquivo Magnet, catálogo de downloads ou conteúdo protegido por direitos autorais é distribuído junto com a aplicação.
