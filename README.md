@@ -43,6 +43,8 @@ Adicione quantos objetos forem necessários dentro de `downloads`, um para cada 
 - Execute o backend: "uvicorn backend:app --reload"
 - Execute a interface: "python main.py"
 
+Público-alvo: entusiastas de jogos e desenvolvedores interessados em criar ferramentas para gerenciamento de bibliotecas, organização de informações e downloads utilizando o protocolo BitTorrent.
+
 Aviso:
 Este repositório contém apenas o código-fonte do projeto. Nenhum arquivo magnet, catálogo de downloads ou conteúdo protegido por direitos autorais é distribuído junto com a aplicação.
 
