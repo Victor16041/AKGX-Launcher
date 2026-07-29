@@ -1,14 +1,12 @@
-# AKGX Launcher
+AKGX Launcher
 
-AKGX Launcher é um aplicativo desenvolvido em Python por mim e meus amigos para o nosso TCC. O objetivo principal do projeto é criar uma ferramenta para pesquisa e gerenciamento de downloads utilizando o protocolo BitTorrent.
+   AKGX Launcher é um aplicativo desenvolvido em Python por mim e meus amigos para o nosso TCC. O objetivo principal do projeto é criar uma ferramenta para pesquisa e gerenciamento de downloads utilizando o protocolo BitTorrent.
 
-A ideia do projeto surgiu da necessidade de centralizar a organização de bibliotecas de jogos e facilitar o gerenciamento dos downloads em uma única aplicação, evitando a necessidade de utilizar diversas ferramentas separadas.
+   A ideia do projeto surgiu da necessidade de centralizar a organização de bibliotecas de jogos e facilitar o gerenciamento dos downloads em uma única aplicação, evitando a necessidade de utilizar diversas ferramentas separadas.
 
-O projeto possui um backend desenvolvido em FastAPI, responsável pelo gerenciamento dos downloads e comunicação com APIs externas, e uma interface gráfica desenvolvida em PyQt5 para pesquisa, visualização de informações e acompanhamento dos downloads.
+   O projeto possui um backend desenvolvido em FastAPI, responsável pelo gerenciamento dos downloads e comunicação com APIs externas, e uma interface gráfica desenvolvida em PyQt5 para pesquisa, visualização de informações e acompanhamento dos downloads.
 
----
-
-# Público-alvo
+Público-alvo
 
 Entusiastas de jogos e desenvolvedores interessados em criar ferramentas para gerenciamento de bibliotecas, organização de informações e gerenciamento de downloads utilizando o protocolo BitTorrent.
 
