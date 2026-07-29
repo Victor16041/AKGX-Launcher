@@ -18,9 +18,11 @@ Como usar:
 
 1) Instale as dependências: "pip install -r requirements.txt"
 
-2) Crie um arquivo fonte1.json seguindo este modelo:
+2) Crie um arquivo `fonte1.json` seguindo este modelo:
+
+```json
 {
-    "name": "Nome Fonte (Exemplo: Fitgirl)",
+    "name": "Nome da Fonte",
     "downloads": [
         {
             "title": "Nome do Jogo",
@@ -32,8 +34,9 @@ Como usar:
         }
     ]
 }
+```
 
-(Adicione quantos objetos forem necessários dentro de downloads, um para cada jogo do catálogo.)
+Adicione quantos objetos forem necessários dentro de `downloads`, um para cada jogo do catálogo.
 
 3) Adicione sua chave da SteamGridDB no arquivo backend.py:
 - API_KEY = "SUA_API_KEY"
